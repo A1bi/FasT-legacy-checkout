@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  TicketDetailsViewController.h
 //  FasTcheckout
 //
 //  Created by Albrecht Oster on 04.06.12.
@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZBarReaderViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface TicketDetailsViewController : UIViewController
 
 @end
