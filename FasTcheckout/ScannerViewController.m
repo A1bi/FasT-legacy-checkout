@@ -12,6 +12,7 @@
 
 - (NSDictionary *)parseTicketData:(ZBarSymbolSet *)data;
 - (void)showTicketDetailsWithInfo:(NSDictionary *)ticketInfo;
+- (void)dismissScanner:(id)sender;
 
 @end
 
@@ -47,6 +48,7 @@
 	[scanBtn release];
 	[spinner release];
 	[dataLabel release];
+	[readerVC release];
 	
     [super dealloc];
 }
@@ -55,17 +57,27 @@
 
 - (IBAction)showScanner:(id)sender
 {
-	ZBarReaderViewController *reader = [ZBarReaderViewController new];
-	[reader setReaderDelegate:self];
+	readerVC = [[ZBarReaderViewController alloc] init];
+	[readerVC setReaderDelegate:self];
 	
 	// only enable code39
-	[[reader scanner] setSymbology:0 config:ZBAR_CFG_ENABLE to:0];
-	[[reader scanner] setSymbology:ZBAR_CODE39 config:ZBAR_CFG_ENABLE to:1];
+	[[readerVC scanner] setSymbology:0 config:ZBAR_CFG_ENABLE to:0];
+	[[readerVC scanner] setSymbology:ZBAR_CODE39 config:ZBAR_CFG_ENABLE to:1];
 	
 	// interface
-	[reader setShowsZBarControls:NO];
+	[readerVC setShowsZBarControls:NO];
 	
-	[self presentModalViewController:reader animated:YES];
+	CGRect cameraFrame = [[self view] frame];
+	UIView *controls = [[[UIView alloc] initWithFrame:cameraFrame] autorelease];
+	
+	UIToolbar *bar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0, cameraFrame.origin.y + cameraFrame.size.height - 44, cameraFrame.size.width, 44)] autorelease];
+	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissScanner:)] autorelease];
+	[bar setItems:[NSArray arrayWithObject:button]];
+	[controls addSubview:bar];
+	
+	[readerVC setCameraOverlayView:controls];
+	
+	[self presentModalViewController:readerVC animated:YES];
 }
 
 - (NSDictionary *)parseTicketData:(ZBarSymbolSet *)data
@@ -108,9 +120,6 @@
 		[ticketInfo setObject:number forKey:currentNumber];
 	}
 	
-	NSLog(@"%@", [ticketInfo objectForKey:@"order"]);
-	[dataLabel setText:code];
-	
 	return ticketInfo;
 }
 
@@ -131,6 +140,13 @@
 	[spinner startAnimating];
 	[self showTicketDetailsWithInfo:[self parseTicketData:results]];
 	[spinner stopAnimating];
+}
+
+#pragma mark overlay actions
+
+- (void)dismissScanner:(id)sender
+{
+	[readerVC dismissModalViewControllerAnimated:YES];
 }
 
 @end

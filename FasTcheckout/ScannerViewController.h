@@ -10,6 +10,9 @@
 #import "ZBarReaderViewController.h"
 
 @interface ScannerViewController : UIViewController <ZBarReaderDelegate>
+{
+	ZBarReaderViewController *readerVC;
+}
 
 @property (retain, nonatomic) IBOutlet UIButton *scanBtn;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
