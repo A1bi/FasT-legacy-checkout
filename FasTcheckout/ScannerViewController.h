@@ -16,8 +16,9 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *scanBtn;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-@property (retain, nonatomic) IBOutlet UILabel *dataLabel;
+@property (retain, nonatomic) IBOutlet UITextField *numberField;
 
 - (IBAction)showScanner:(id)sender;
+- (IBAction)checkId:(id)sender;
 
 @end

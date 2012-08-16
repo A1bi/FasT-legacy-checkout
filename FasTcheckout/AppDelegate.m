@@ -24,8 +24,9 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 	
-	ScannerViewController *svc = [[ScannerViewController alloc] init];
-	[[self window] setRootViewController:svc];
+	ScannerViewController *svc = [[[ScannerViewController alloc] init] autorelease];
+	UINavigationController *nvc = [[[UINavigationController alloc] initWithRootViewController:svc] autorelease];
+	[[self window] setRootViewController:nvc];
 	
     [self.window makeKeyAndVisible];
 	return YES;

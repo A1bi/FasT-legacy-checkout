@@ -7,20 +7,30 @@
 //
 
 #import "TicketDetailsViewController.h"
+#import "Ticket.h"
 
 @interface TicketDetailsViewController ()
+
+- (void)reloadData;
 
 @end
 
 @implementation TicketDetailsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize tableView;
+
+- (id)initWithTicket:(Ticket *)t
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+	self = [super initWithNibName:nil bundle:nil];
+	if (self) {
+		[[self navigationItem] setTitle:@"Ticket"];
+		
+		ticket = [t retain];
+		
+		[self reloadData];
+	}
+	
+	return self;
 }
 
 - (void)viewDidLoad
@@ -31,9 +41,10 @@
 
 - (void)viewDidUnload
 {
+    [self setTableView:nil];
+	ticket = nil;
+	
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -44,6 +55,37 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+}
+
+- (void)dealloc {
+    [tableView release];
+	[ticket release];
+	
+    [super dealloc];
+}
+
+#pragma mark private methods
+
+- (void)reloadData
+{
+	[tableView reloadData];
+}
+
+#pragma mark table data
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return nil;
 }
 
 @end

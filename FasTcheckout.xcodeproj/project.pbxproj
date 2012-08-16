@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6145C08015DD685800074537 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C07F15DD685800074537 /* Order.m */; };
 		61EDF735157D1C0B00DD2152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF734157D1C0B00DD2152 /* UIKit.framework */; };
 		61EDF737157D1C0B00DD2152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF736157D1C0B00DD2152 /* Foundation.framework */; };
 		61EDF739157D1C0B00DD2152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF738157D1C0B00DD2152 /* CoreGraphics.framework */; };
@@ -22,9 +23,12 @@
 		61EDF790157D21E100DD2152 /* TicketDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61EDF78E157D21E100DD2152 /* TicketDetailsViewController.xib */; };
 		61EDF7A0157D466500DD2152 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EDF79E157D466400DD2152 /* ScannerViewController.m */; };
 		61EDF7A1157D466500DD2152 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61EDF79F157D466400DD2152 /* ScannerViewController.xib */; };
+		61F01E80157E4847007CF67E /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F01E7F157E4847007CF67E /* Ticket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6145C07E15DD685800074537 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		6145C07F15DD685800074537 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		61EDF730157D1C0B00DD2152 /* FasTcheckout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FasTcheckout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61EDF734157D1C0B00DD2152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		61EDF736157D1C0B00DD2152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,6 +70,8 @@
 		61EDF79E157D466400DD2152 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		61EDF79F157D466400DD2152 /* ScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		61EDF7A6157E1E0900DD2152 /* TicketDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailsViewController.h; sourceTree = "<group>"; };
+		61F01E7E157E4847007CF67E /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
+		61F01E7F157E4847007CF67E /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,10 @@
 				61EDF7A6157E1E0900DD2152 /* TicketDetailsViewController.h */,
 				61EDF78D157D21E100DD2152 /* TicketDetailsViewController.m */,
 				61EDF78E157D21E100DD2152 /* TicketDetailsViewController.xib */,
+				6145C07E15DD685800074537 /* Order.h */,
+				6145C07F15DD685800074537 /* Order.m */,
+				61F01E7E157E4847007CF67E /* Ticket.h */,
+				61F01E7F157E4847007CF67E /* Ticket.m */,
 				61EDF79D157D466400DD2152 /* ScannerViewController.h */,
 				61EDF79E157D466400DD2152 /* ScannerViewController.m */,
 				61EDF79F157D466400DD2152 /* ScannerViewController.xib */,
@@ -267,6 +277,8 @@
 				61EDF745157D1C0C00DD2152 /* AppDelegate.m in Sources */,
 				61EDF78F157D21E100DD2152 /* TicketDetailsViewController.m in Sources */,
 				61EDF7A0157D466500DD2152 /* ScannerViewController.m in Sources */,
+				61F01E80157E4847007CF67E /* Ticket.m in Sources */,
+				6145C08015DD685800074537 /* Order.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +377,7 @@
 				61EDF75E157D1C0C00DD2152 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

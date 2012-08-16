@@ -7,6 +7,8 @@
 //
 
 #import "ScannerViewController.h"
+#import "TicketDetailsViewController.h"
+#import "Ticket.h"
 
 @interface ScannerViewController ()
 
@@ -17,15 +19,15 @@
 @end
 
 @implementation ScannerViewController
-@synthesize scanBtn;
-@synthesize spinner;
-@synthesize dataLabel;
+@synthesize numberField;
+
+@synthesize scanBtn, spinner;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [[self navigationItem] setTitle:@"Ticket scannen"];
     }
     return self;
 }
@@ -38,18 +40,18 @@
 - (void)viewDidUnload
 {
 	[self setScanBtn:nil];
-	[self setSpinner:nil];	
-	[self setDataLabel:nil];
+	[self setSpinner:nil];
 	
+	[self setNumberField:nil];
     [super viewDidUnload];
 }
 
 - (void)dealloc {
 	[scanBtn release];
 	[spinner release];
-	[dataLabel release];
 	[readerVC release];
 	
+	[numberField release];
     [super dealloc];
 }
 
@@ -67,7 +69,7 @@
 	// interface
 	[readerVC setShowsZBarControls:NO];
 	
-	CGRect cameraFrame = [[self view] frame];
+	CGRect cameraFrame = [[readerVC view] frame];
 	UIView *controls = [[[UIView alloc] initWithFrame:cameraFrame] autorelease];
 	
 	UIToolbar *bar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0, cameraFrame.origin.y + cameraFrame.size.height - 44, cameraFrame.size.width, 44)] autorelease];
@@ -78,6 +80,11 @@
 	[readerVC setCameraOverlayView:controls];
 	
 	[self presentModalViewController:readerVC animated:YES];
+}
+
+- (IBAction)checkId:(id)sender
+{
+	[self showTicketDetailsWithInfo:[NSDictionary dictionaryWithObjectsAndKeys:[numberField text], @"ticket", nil]];
 }
 
 - (NSDictionary *)parseTicketData:(ZBarSymbolSet *)data
@@ -125,7 +132,11 @@
 
 - (void)showTicketDetailsWithInfo:(NSDictionary *)ticketInfo
 {
-	[dataLabel setText:[NSString stringWithFormat:@"Ticket: %@ for order: %@", [ticketInfo objectForKey:@"ticket"], [ticketInfo objectForKey:@"order"]]];
+	NSDictionary *tInfo = [NSDictionary dictionaryWithObjectsAndKeys:[ticketInfo objectForKey:@"ticket"], @"sId", nil];
+	Ticket *ticket = [[[Ticket alloc] initWithInfo:tInfo] autorelease];
+	
+	TicketDetailsViewController *ticketDetails = [[[TicketDetailsViewController alloc] initWithTicket:ticket] autorelease];
+	[[self navigationController] pushViewController:ticketDetails animated:YES];
 }
 
 #pragma mark reader delegate

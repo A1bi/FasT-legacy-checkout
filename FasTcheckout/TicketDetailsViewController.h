@@ -9,6 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ZBarReaderViewController.h"
 
-@interface TicketDetailsViewController : UIViewController
+@class Ticket;
+
+@interface TicketDetailsViewController : UIViewController <UITableViewDataSource>
+{
+	Ticket *ticket;
+}
+
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
+
+- (id)initWithTicket:(Ticket *)t;
 
 @end
