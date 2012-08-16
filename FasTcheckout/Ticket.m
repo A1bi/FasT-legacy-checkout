@@ -12,16 +12,22 @@
 
 @implementation Ticket
 
-@synthesize dId, sId, voided, date, cancelled;
+@synthesize dId, sId, voided, date, cancelled, order;
 
-- (id)initWithInfo:(NSDictionary *)info
+- (id)initWithInfo:(NSDictionary *)info order:(Order *)o
 {
 	self = [super init];
 	if (self) {
-		dId = [[info objectForKey:@"id"] intValue];
-		sId = [[info objectForKey:@"sId"] intValue];
-		date = [[NSDate dateWithTimeIntervalSince1970:[[info objectForKey:@"date"] intValue]] retain];
+		NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
+		[formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+		
+		dId = [formatter numberFromString:[info objectForKey:@"id"]];
+		sId = [formatter numberFromString:[info objectForKey:@"sId"]];
+		
+		//date = [[NSDate dateWithTimeIntervalSince1970:[[info objectForKey:@"date"] intValue]] retain];
 		//voided = ([[info objectForKey:@"void"] compare:@"true" options:nil]) ? YES : NO;
+		
+		order = o;
 	}
 	
 	return self;

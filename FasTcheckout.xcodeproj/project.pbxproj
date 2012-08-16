@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6145C08015DD685800074537 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C07F15DD685800074537 /* Order.m */; };
+		6145C08915DD777700074537 /* OrderStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C08815DD777700074537 /* OrderStore.m */; };
 		61EDF735157D1C0B00DD2152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF734157D1C0B00DD2152 /* UIKit.framework */; };
 		61EDF737157D1C0B00DD2152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF736157D1C0B00DD2152 /* Foundation.framework */; };
 		61EDF739157D1C0B00DD2152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF738157D1C0B00DD2152 /* CoreGraphics.framework */; };
@@ -29,6 +30,8 @@
 /* Begin PBXFileReference section */
 		6145C07E15DD685800074537 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		6145C07F15DD685800074537 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
+		6145C08715DD777700074537 /* OrderStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderStore.h; sourceTree = "<group>"; };
+		6145C08815DD777700074537 /* OrderStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderStore.m; sourceTree = "<group>"; };
 		61EDF730157D1C0B00DD2152 /* FasTcheckout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FasTcheckout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61EDF734157D1C0B00DD2152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		61EDF736157D1C0B00DD2152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -142,6 +145,8 @@
 				61EDF79D157D466400DD2152 /* ScannerViewController.h */,
 				61EDF79E157D466400DD2152 /* ScannerViewController.m */,
 				61EDF79F157D466400DD2152 /* ScannerViewController.xib */,
+				6145C08715DD777700074537 /* OrderStore.h */,
+				6145C08815DD777700074537 /* OrderStore.m */,
 				61EDF73B157D1C0C00DD2152 /* Supporting Files */,
 			);
 			name = FasTcheckout;
@@ -279,6 +284,7 @@
 				61EDF7A0157D466500DD2152 /* ScannerViewController.m in Sources */,
 				61F01E80157E4847007CF67E /* Ticket.m in Sources */,
 				6145C08015DD685800074537 /* Order.m in Sources */,
+				6145C08915DD777700074537 /* OrderStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

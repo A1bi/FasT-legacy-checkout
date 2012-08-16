@@ -9,6 +9,7 @@
 #import "ScannerViewController.h"
 #import "TicketDetailsViewController.h"
 #import "Ticket.h"
+#import "OrderStore.h"
 
 @interface ScannerViewController ()
 
@@ -145,8 +146,7 @@
 {
 	[reader dismissModalViewControllerAnimated:YES];
 	
-	ZBarSymbolSet *results =
-	[info objectForKey: ZBarReaderControllerResults];
+	ZBarSymbolSet *results = [info objectForKey: ZBarReaderControllerResults];
 	
 	[spinner startAnimating];
 	[self showTicketDetailsWithInfo:[self parseTicketData:results]];

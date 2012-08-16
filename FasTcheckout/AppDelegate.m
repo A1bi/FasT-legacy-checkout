@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ScannerViewController.h"
 #import "TicketDetailsViewController.h"
+#import "OrderStore.h"
 
 
 @implementation AppDelegate
@@ -23,6 +24,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	
+	[[OrderStore defaultStore] init];
 	
 	ScannerViewController *svc = [[[ScannerViewController alloc] init] autorelease];
 	UINavigationController *nvc = [[[UINavigationController alloc] initWithRootViewController:svc] autorelease];
