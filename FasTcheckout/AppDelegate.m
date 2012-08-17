@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ScannerViewController.h"
 #import "OrderStore.h"
+#import "OrdersTableViewController.h"
 
 
 @implementation AppDelegate
@@ -28,7 +29,14 @@
 	
 	ScannerViewController *svc = [[[ScannerViewController alloc] init] autorelease];
 	UINavigationController *nvc = [[[UINavigationController alloc] initWithRootViewController:svc] autorelease];
-	[[self window] setRootViewController:nvc];
+	
+	OrdersTableViewController *ovc = [[OrdersTableViewController alloc] init];
+	UINavigationController *nvc2 = [[[UINavigationController alloc] initWithRootViewController:ovc] autorelease];
+	
+	UITabBarController *tbc = [[[UITabBarController alloc] init] autorelease];
+	[tbc addChildViewController:nvc];
+	[tbc addChildViewController:nvc2];
+	[[self window] setRootViewController:tbc];
 	
     [self.window makeKeyAndVisible];
 	return YES;

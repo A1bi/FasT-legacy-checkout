@@ -20,4 +20,6 @@
 - (Order *)orderWithSId:(NSNumber *)sId;
 - (Ticket *)ticketWithSId:(NSNumber *)sId;
 
+@property (nonatomic, readonly) NSDictionary *orders;
+
 @end

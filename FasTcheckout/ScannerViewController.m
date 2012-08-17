@@ -7,6 +7,7 @@
 //
 
 #import "ScannerViewController.h"
+#import "TicketsTableViewController.h"
 #import "Ticket.h"
 #import "OrderStore.h"
 
@@ -31,7 +32,9 @@
     if (self) {
 		tickets = [[NSMutableArray alloc] init];
 		
-        [[self navigationItem] setTitle:@"Ticket scannen"];
+		UITabBarItem *item = [[[UITabBarItem alloc] initWithTitle:@"Scanner" image:nil tag:0] autorelease];
+		[[self navigationController] setTabBarItem:item];
+		[[self navigationItem] setTitle:@"Ticket scannen"];
     }
     return self;
 }
@@ -91,6 +94,19 @@
 - (IBAction)checkId:(id)sender
 {
 	[self addTicketWithSId:[numberField text]];
+	[numberField setText:nil];
+}
+
+- (IBAction)showTickets:(id)sender {
+	TicketsTableViewController *tvc = [[TicketsTableViewController alloc] initWithTickets:tickets];
+	
+	[numberField resignFirstResponder];
+	[[self navigationController] pushViewController:tvc animated:YES];
+}
+
+- (IBAction)tappedReset:(id)sender {
+	[self resetTickets];
+	[numberField resignFirstResponder];
 }
 
 - (void)addTicketWithSId:(NSString *)sId
@@ -101,6 +117,10 @@
 
 	Ticket *ticket = [[OrderStore defaultStore] ticketWithSId:number];
 	if (!ticket) return;
+	
+	for (Ticket *ticket in tickets) {
+		if ([[ticket sId] compare:number] == NSOrderedSame) return;
+	}
 	
 	[tickets addObject:ticket];
 	

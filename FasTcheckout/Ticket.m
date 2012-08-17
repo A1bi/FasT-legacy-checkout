@@ -21,11 +21,11 @@
 		NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
 		[formatter setNumberStyle:NSNumberFormatterDecimalStyle];
 		
-		dId = [formatter numberFromString:[info objectForKey:@"id"]];
-		sId = [formatter numberFromString:[info objectForKey:@"sId"]];
+		dId = [[formatter numberFromString:[info objectForKey:@"id"]] retain];
+		sId = [[formatter numberFromString:[info objectForKey:@"sId"]] retain];
 		
 		//date = [[NSDate dateWithTimeIntervalSince1970:[[info objectForKey:@"date"] intValue]] retain];
-		//voided = ([[info objectForKey:@"void"] compare:@"true" options:nil]) ? YES : NO;
+		voided = [[NSDate dateWithTimeIntervalSince1970:[[info objectForKey:@"voided"] intValue]] retain];
 		
 		order = o;
 	}
@@ -40,9 +40,21 @@
 	[super dealloc];
 }
 
+- (void)voidIt
+{
+	NSError *error = nil;
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://theater-kaisersesch.de/api.php?action=void&ticket=%@", dId]]];
+	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+	
+	if (!error) {
+		[voided release];
+		voided = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
+	}
+}
+
 - (BOOL)isValid
 {
-	return (!cancelled && !voided && [order paid]);
+	return ([order paid] && !cancelled && [voided timeIntervalSince1970] < 1);
 }
 
 @end

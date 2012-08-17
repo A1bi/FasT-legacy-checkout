@@ -20,17 +20,17 @@
 		NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
 		[formatter setNumberStyle:NSNumberFormatterDecimalStyle];
 		
-		dId = [formatter numberFromString:[info objectForKey:@"id"]];
-		sId = [formatter numberFromString:[info objectForKey:@"sId"]];
-		total = [formatter numberFromString:[info objectForKey:@"total"]];
+		dId = [[formatter numberFromString:[info objectForKey:@"id"]] retain];
+		sId = [[formatter numberFromString:[info objectForKey:@"sId"]] retain];
+		total = [[formatter numberFromString:[info objectForKey:@"total"]] retain];
 		
 		type = [[info objectForKey:@"type"] intValue];
 		payMethod = [[info objectForKey:@"payMethod"] intValue];
 		paid = [[info objectForKey:@"paid"] boolValue];
 		
-		address = [info objectForKey:@"address"];
-		cancelled = [info objectForKey:@"cancelled"];
-		notes = [info objectForKey:@"notes"];
+		address = [[info objectForKey:@"address"] retain];
+		cancelled = [[info objectForKey:@"cancelled"] retain];
+		notes = [[info objectForKey:@"notes"] retain];
 		
 		NSMutableDictionary *tmpTickets = [NSMutableDictionary dictionary];
 		for (NSDictionary *ticketInfo in [info objectForKey:@"tickets"]) {

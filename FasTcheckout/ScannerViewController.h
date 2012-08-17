@@ -21,5 +21,6 @@
 
 - (IBAction)showScanner:(id)sender;
 - (IBAction)checkId:(id)sender;
+- (IBAction)showTickets:(id)sender;
 
 @end

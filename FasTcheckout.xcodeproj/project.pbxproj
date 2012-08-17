@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6131977715DE95A000B9C0ED /* OrdersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6131977615DE95A000B9C0ED /* OrdersTableViewController.m */; };
+		6131977B15DE968F00B9C0ED /* OrdersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6131977A15DE968F00B9C0ED /* OrdersTableViewCell.m */; };
 		6145C08015DD685800074537 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C07F15DD685800074537 /* Order.m */; };
 		6145C08915DD777700074537 /* OrderStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C08815DD777700074537 /* OrderStore.m */; };
+		6145C0BA15DE790F00074537 /* TicketsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C0B915DE790F00074537 /* TicketsTableViewController.m */; };
+		6145C0C215DE7AFB00074537 /* TicketsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C0C115DE7AFB00074537 /* TicketsTableViewCell.m */; };
 		61EDF735157D1C0B00DD2152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF734157D1C0B00DD2152 /* UIKit.framework */; };
 		61EDF737157D1C0B00DD2152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF736157D1C0B00DD2152 /* Foundation.framework */; };
 		61EDF739157D1C0B00DD2152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF738157D1C0B00DD2152 /* CoreGraphics.framework */; };
@@ -26,10 +30,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6131977515DE95A000B9C0ED /* OrdersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdersTableViewController.h; sourceTree = "<group>"; };
+		6131977615DE95A000B9C0ED /* OrdersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdersTableViewController.m; sourceTree = "<group>"; };
+		6131977915DE968F00B9C0ED /* OrdersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdersTableViewCell.h; sourceTree = "<group>"; };
+		6131977A15DE968F00B9C0ED /* OrdersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdersTableViewCell.m; sourceTree = "<group>"; };
 		6145C07E15DD685800074537 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		6145C07F15DD685800074537 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		6145C08715DD777700074537 /* OrderStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderStore.h; sourceTree = "<group>"; };
 		6145C08815DD777700074537 /* OrderStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderStore.m; sourceTree = "<group>"; };
+		6145C0B815DE790F00074537 /* TicketsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsTableViewController.h; sourceTree = "<group>"; };
+		6145C0B915DE790F00074537 /* TicketsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsTableViewController.m; sourceTree = "<group>"; };
+		6145C0C015DE7AFB00074537 /* TicketsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsTableViewCell.h; sourceTree = "<group>"; };
+		6145C0C115DE7AFB00074537 /* TicketsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsTableViewCell.m; sourceTree = "<group>"; };
 		61EDF730157D1C0B00DD2152 /* FasTcheckout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FasTcheckout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61EDF734157D1C0B00DD2152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		61EDF736157D1C0B00DD2152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -137,6 +149,14 @@
 				61EDF79D157D466400DD2152 /* ScannerViewController.h */,
 				61EDF79E157D466400DD2152 /* ScannerViewController.m */,
 				61EDF79F157D466400DD2152 /* ScannerViewController.xib */,
+				6145C0B815DE790F00074537 /* TicketsTableViewController.h */,
+				6145C0B915DE790F00074537 /* TicketsTableViewController.m */,
+				6145C0C015DE7AFB00074537 /* TicketsTableViewCell.h */,
+				6145C0C115DE7AFB00074537 /* TicketsTableViewCell.m */,
+				6131977515DE95A000B9C0ED /* OrdersTableViewController.h */,
+				6131977615DE95A000B9C0ED /* OrdersTableViewController.m */,
+				6131977915DE968F00B9C0ED /* OrdersTableViewCell.h */,
+				6131977A15DE968F00B9C0ED /* OrdersTableViewCell.m */,
 				6145C08715DD777700074537 /* OrderStore.h */,
 				6145C08815DD777700074537 /* OrderStore.m */,
 				61EDF73B157D1C0C00DD2152 /* Supporting Files */,
@@ -275,6 +295,10 @@
 				61F01E80157E4847007CF67E /* Ticket.m in Sources */,
 				6145C08015DD685800074537 /* Order.m in Sources */,
 				6145C08915DD777700074537 /* OrderStore.m in Sources */,
+				6145C0BA15DE790F00074537 /* TicketsTableViewController.m in Sources */,
+				6145C0C215DE7AFB00074537 /* TicketsTableViewCell.m in Sources */,
+				6131977715DE95A000B9C0ED /* OrdersTableViewController.m in Sources */,
+				6131977B15DE968F00B9C0ED /* OrdersTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
