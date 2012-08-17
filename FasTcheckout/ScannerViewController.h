@@ -12,11 +12,12 @@
 @interface ScannerViewController : UIViewController <ZBarReaderDelegate>
 {
 	ZBarReaderViewController *readerVC;
+	NSMutableArray *tickets;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *scanBtn;
-@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (retain, nonatomic) IBOutlet UITextField *numberField;
+@property (retain, nonatomic) IBOutlet UILabel *ticketCounter;
 
 - (IBAction)showScanner:(id)sender;
 - (IBAction)checkId:(id)sender;

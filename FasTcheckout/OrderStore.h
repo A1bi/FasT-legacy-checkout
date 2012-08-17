@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class Order;
+@class Order, Ticket;
 
 @interface OrderStore : NSObject
 {
-	NSDictionary *orders;
+	NSDictionary *orders, *tickets;
 }
 
 + (OrderStore *)defaultStore;
 
 - (Order *)orderWithSId:(NSNumber *)sId;
+- (Ticket *)ticketWithSId:(NSNumber *)sId;
 
 @end

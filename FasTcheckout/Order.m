@@ -32,10 +32,10 @@
 		cancelled = [info objectForKey:@"cancelled"];
 		notes = [info objectForKey:@"notes"];
 		
-		NSMutableArray *tmpTickets = [NSMutableArray array];
+		NSMutableDictionary *tmpTickets = [NSMutableDictionary dictionary];
 		for (NSDictionary *ticketInfo in [info objectForKey:@"tickets"]) {
 			Ticket *ticket = [[Ticket alloc] initWithInfo:ticketInfo order:self];
-			[tmpTickets addObject:ticket];
+			[tmpTickets setObject:ticket forKey:[ticket sId]];
 		}
 		
 		tickets = [[tmpTickets copy] retain];

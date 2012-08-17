@@ -8,6 +8,7 @@
 
 #import "OrderStore.h"
 #import "Order.h"
+#import "Ticket.h"
 
 static OrderStore *defaultStore = nil;
 
@@ -45,12 +46,15 @@ static OrderStore *defaultStore = nil;
 		if (error) NSLog(@"%@", error);
 		
 		NSMutableDictionary *tmpOrders = [NSMutableDictionary dictionary];
+		NSMutableDictionary *tmpTickets = [NSMutableDictionary dictionary];
 		for (NSDictionary *orderInfo in [result objectForKey:@"orders"]) {
 			Order* order = [[[Order alloc] initWithInfo:orderInfo] autorelease];
 			[tmpOrders setObject:order forKey:[order sId]];
+			[tmpTickets addEntriesFromDictionary:[order tickets]];
 		}
 		
 		orders = [[tmpOrders copy] retain];
+		tickets = [[tmpTickets copy] retain];
 	}
 	
 	return self;
@@ -74,6 +78,11 @@ static OrderStore *defaultStore = nil;
 - (Order *)orderWithSId:(NSNumber *)sId
 {
 	return [orders objectForKey:sId];
+}
+
+- (Ticket *)ticketWithSId:(NSNumber *)sId
+{
+	return [tickets objectForKey:sId];
 }
 
 @end

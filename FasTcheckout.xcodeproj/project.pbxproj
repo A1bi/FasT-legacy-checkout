@@ -20,8 +20,6 @@
 		61EDF766157D1C8900DD2152 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF765157D1C8900DD2152 /* CoreVideo.framework */; };
 		61EDF768157D1C9100DD2152 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF767157D1C9100DD2152 /* QuartzCore.framework */; };
 		61EDF787157D1D4F00DD2152 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF781157D1D4F00DD2152 /* libzbar.a */; };
-		61EDF78F157D21E100DD2152 /* TicketDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EDF78D157D21E100DD2152 /* TicketDetailsViewController.m */; };
-		61EDF790157D21E100DD2152 /* TicketDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61EDF78E157D21E100DD2152 /* TicketDetailsViewController.xib */; };
 		61EDF7A0157D466500DD2152 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EDF79E157D466400DD2152 /* ScannerViewController.m */; };
 		61EDF7A1157D466500DD2152 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61EDF79F157D466400DD2152 /* ScannerViewController.xib */; };
 		61F01E80157E4847007CF67E /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F01E7F157E4847007CF67E /* Ticket.m */; };
@@ -67,12 +65,9 @@
 		61EDF77F157D1D4F00DD2152 /* ZBarSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSDK.h; sourceTree = "<group>"; };
 		61EDF780157D1D4F00DD2152 /* ZBarSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSymbol.h; sourceTree = "<group>"; };
 		61EDF781157D1D4F00DD2152 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
-		61EDF78D157D21E100DD2152 /* TicketDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailsViewController.m; sourceTree = "<group>"; };
-		61EDF78E157D21E100DD2152 /* TicketDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketDetailsViewController.xib; sourceTree = "<group>"; };
 		61EDF79D157D466400DD2152 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		61EDF79E157D466400DD2152 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		61EDF79F157D466400DD2152 /* ScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
-		61EDF7A6157E1E0900DD2152 /* TicketDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailsViewController.h; sourceTree = "<group>"; };
 		61F01E7E157E4847007CF67E /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
 		61F01E7F157E4847007CF67E /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,9 +130,6 @@
 			children = (
 				61EDF743157D1C0C00DD2152 /* AppDelegate.h */,
 				61EDF744157D1C0C00DD2152 /* AppDelegate.m */,
-				61EDF7A6157E1E0900DD2152 /* TicketDetailsViewController.h */,
-				61EDF78D157D21E100DD2152 /* TicketDetailsViewController.m */,
-				61EDF78E157D21E100DD2152 /* TicketDetailsViewController.xib */,
 				6145C07E15DD685800074537 /* Order.h */,
 				6145C07F15DD685800074537 /* Order.m */,
 				61F01E7E157E4847007CF67E /* Ticket.h */,
@@ -266,7 +258,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61EDF790157D21E100DD2152 /* TicketDetailsViewController.xib in Resources */,
 				61EDF7A1157D466500DD2152 /* ScannerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,7 +271,6 @@
 			files = (
 				61EDF741157D1C0C00DD2152 /* main.m in Sources */,
 				61EDF745157D1C0C00DD2152 /* AppDelegate.m in Sources */,
-				61EDF78F157D21E100DD2152 /* TicketDetailsViewController.m in Sources */,
 				61EDF7A0157D466500DD2152 /* ScannerViewController.m in Sources */,
 				61F01E80157E4847007CF67E /* Ticket.m in Sources */,
 				6145C08015DD685800074537 /* Order.m in Sources */,

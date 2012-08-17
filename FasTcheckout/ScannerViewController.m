@@ -7,27 +7,30 @@
 //
 
 #import "ScannerViewController.h"
-#import "TicketDetailsViewController.h"
 #import "Ticket.h"
 #import "OrderStore.h"
 
 @interface ScannerViewController ()
 
 - (NSDictionary *)parseTicketData:(ZBarSymbolSet *)data;
-- (void)showTicketDetailsWithInfo:(NSDictionary *)ticketInfo;
+- (void)addTicketWithSId:(NSString *)sId;
 - (void)dismissScanner:(id)sender;
+- (void)resetTickets;
 
 @end
 
 @implementation ScannerViewController
-@synthesize numberField;
 
-@synthesize scanBtn, spinner;
+@synthesize numberField;
+@synthesize ticketCounter;
+@synthesize scanBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+		tickets = [[NSMutableArray alloc] init];
+		
         [[self navigationItem] setTitle:@"Ticket scannen"];
     }
     return self;
@@ -36,23 +39,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[self resetTickets];
 }
 
 - (void)viewDidUnload
 {
 	[self setScanBtn:nil];
-	[self setSpinner:nil];
 	
 	[self setNumberField:nil];
+	[self setTicketCounter:nil];
     [super viewDidUnload];
 }
 
 - (void)dealloc {
 	[scanBtn release];
-	[spinner release];
 	[readerVC release];
 	
 	[numberField release];
+	[ticketCounter release];
     [super dealloc];
 }
 
@@ -85,7 +90,21 @@
 
 - (IBAction)checkId:(id)sender
 {
-	[self showTicketDetailsWithInfo:[NSDictionary dictionaryWithObjectsAndKeys:[numberField text], @"ticket", nil]];
+	[self addTicketWithSId:[numberField text]];
+}
+
+- (void)addTicketWithSId:(NSString *)sId
+{
+	NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
+	[formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+	NSNumber *number = [formatter numberFromString:sId];
+
+	Ticket *ticket = [[OrderStore defaultStore] ticketWithSId:number];
+	if (!ticket) return;
+	
+	[tickets addObject:ticket];
+	
+	[ticketCounter setText:[NSString stringWithFormat:@"%d Tickets eingelesen.", [tickets count]]];
 }
 
 - (NSDictionary *)parseTicketData:(ZBarSymbolSet *)data
@@ -131,26 +150,19 @@
 	return ticketInfo;
 }
 
-- (void)showTicketDetailsWithInfo:(NSDictionary *)ticketInfo
+- (void)resetTickets
 {
-	NSDictionary *tInfo = [NSDictionary dictionaryWithObjectsAndKeys:[ticketInfo objectForKey:@"ticket"], @"sId", nil];
-	Ticket *ticket = [[[Ticket alloc] initWithInfo:tInfo] autorelease];
+	[tickets removeAllObjects];
 	
-	TicketDetailsViewController *ticketDetails = [[[TicketDetailsViewController alloc] initWithTicket:ticket] autorelease];
-	[[self navigationController] pushViewController:ticketDetails animated:YES];
+	[ticketCounter setText:@"Keine Tickets eingelesen"];
 }
 
 #pragma mark reader delegate
 
 - (void)imagePickerController:(UIImagePickerController *)reader didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	[reader dismissModalViewControllerAnimated:YES];
-	
-	ZBarSymbolSet *results = [info objectForKey: ZBarReaderControllerResults];
-	
-	[spinner startAnimating];
-	[self showTicketDetailsWithInfo:[self parseTicketData:results]];
-	[spinner stopAnimating];
+	ZBarSymbolSet *results = [info objectForKey: ZBarReaderControllerResults];	
+	[self addTicketWithSId:[[self parseTicketData:results] objectForKey:@"ticket"]];
 }
 
 #pragma mark overlay actions

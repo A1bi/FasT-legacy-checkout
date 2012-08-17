@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ScannerViewController.h"
-#import "TicketDetailsViewController.h"
 #import "OrderStore.h"
 
 
