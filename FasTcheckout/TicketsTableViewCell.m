@@ -45,14 +45,14 @@
 	if ([[ticket voided] timeIntervalSince1970] > 0) {
 		text = @"Bereits eingelöst!";
 		
-	} else if ([order type] == Free) {
+	} else if ([order type] == OrderTypeFree) {
 		text = @"Freikarte";
 	
 	} else if ([ticket cancelled]) {
 		text = @"Storniert";
 		
 	} else if (![order paid]) {
-		if ([order payMethod] == CashLater) {
+		if ([order payMethod] == OrderPayMethodCashLater) {
 			text = @"Muss an Abendkasse bezahlen!";
 		} else {
 			text = @"Nicht bezahlt!";

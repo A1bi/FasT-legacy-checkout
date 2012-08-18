@@ -8,8 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum { Online, Manual, Free } OrderType;
-typedef enum { None, Charge, Transfer, CashUpFront, CashLater } OrderPayMethod;
+typedef NS_ENUM(NSUInteger, OrderType) {
+	OrderTypeOnline,
+	OrderTypeManual,
+	OrderTypeFree
+};
+
+typedef NS_ENUM(NSUInteger, OrderPayMethod) {
+	OrderPayMethodNone,
+	OrderPayMethodCharge,
+	OrderPayMethodTransfer,
+	OrderPayMethodCashUpFront,
+	OrderPayMethodCashLater
+};
 
 @interface Order : NSObject
 {
