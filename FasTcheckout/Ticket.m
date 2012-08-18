@@ -45,7 +45,7 @@
 - (void)voidIt
 {
 	NSError *error = nil;
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fast.albisigns/api.php?action=void&ticket=%@", dId]]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/api.php?action=void&ticket=%@", FAST_API_URL, dId]]];
 	[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
 	
 	if (!error) {

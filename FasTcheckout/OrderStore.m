@@ -40,7 +40,7 @@ static OrderStore *defaultStore = nil;
 	self = [super init];
 	if (self) {
 		NSError *error = nil;
-		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://fast.albisigns/api.php?action=getOrders&date=1"]];
+		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/api.php?action=getOrders&date=1", FAST_API_URL]]];
 		NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
 		if (error) NSLog(@"%@", error);
 		
