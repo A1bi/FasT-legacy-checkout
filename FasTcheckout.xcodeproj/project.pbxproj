@@ -13,6 +13,8 @@
 		6145C08915DD777700074537 /* OrderStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C08815DD777700074537 /* OrderStore.m */; };
 		6145C0BA15DE790F00074537 /* TicketsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C0B915DE790F00074537 /* TicketsTableViewController.m */; };
 		6145C0C215DE7AFB00074537 /* TicketsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145C0C115DE7AFB00074537 /* TicketsTableViewCell.m */; };
+		614DD55815DFB7B400464577 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614DD55715DFB7B400464577 /* AudioToolbox.framework */; };
+		614DD55B15DFBB7500464577 /* BarScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614DD55A15DFBB7500464577 /* BarScannerViewController.m */; };
 		61EDF735157D1C0B00DD2152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF734157D1C0B00DD2152 /* UIKit.framework */; };
 		61EDF737157D1C0B00DD2152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF736157D1C0B00DD2152 /* Foundation.framework */; };
 		61EDF739157D1C0B00DD2152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EDF738157D1C0B00DD2152 /* CoreGraphics.framework */; };
@@ -42,6 +44,9 @@
 		6145C0B915DE790F00074537 /* TicketsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsTableViewController.m; sourceTree = "<group>"; };
 		6145C0C015DE7AFB00074537 /* TicketsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsTableViewCell.h; sourceTree = "<group>"; };
 		6145C0C115DE7AFB00074537 /* TicketsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsTableViewCell.m; sourceTree = "<group>"; };
+		614DD55715DFB7B400464577 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		614DD55915DFBB7500464577 /* BarScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarScannerViewController.h; path = ../BarScannerViewController.h; sourceTree = "<group>"; };
+		614DD55A15DFBB7500464577 /* BarScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarScannerViewController.m; path = ../BarScannerViewController.m; sourceTree = "<group>"; };
 		61EDF730157D1C0B00DD2152 /* FasTcheckout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FasTcheckout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61EDF734157D1C0B00DD2152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		61EDF736157D1C0B00DD2152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				614DD55815DFB7B400464577 /* AudioToolbox.framework in Frameworks */,
 				61EDF768157D1C9100DD2152 /* QuartzCore.framework in Frameworks */,
 				61EDF766157D1C8900DD2152 /* CoreVideo.framework in Frameworks */,
 				61EDF764157D1C8000DD2152 /* CoreMedia.framework in Frameworks */,
@@ -125,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				61EDF769157D1D4F00DD2152 /* ZBarSDK */,
+				614DD55715DFB7B400464577 /* AudioToolbox.framework */,
 				61EDF767157D1C9100DD2152 /* QuartzCore.framework */,
 				61EDF765157D1C8900DD2152 /* CoreVideo.framework */,
 				61EDF763157D1C8000DD2152 /* CoreMedia.framework */,
@@ -149,6 +156,8 @@
 				61EDF79D157D466400DD2152 /* ScannerViewController.h */,
 				61EDF79E157D466400DD2152 /* ScannerViewController.m */,
 				61EDF79F157D466400DD2152 /* ScannerViewController.xib */,
+				614DD55915DFBB7500464577 /* BarScannerViewController.h */,
+				614DD55A15DFBB7500464577 /* BarScannerViewController.m */,
 				6145C0B815DE790F00074537 /* TicketsTableViewController.h */,
 				6145C0B915DE790F00074537 /* TicketsTableViewController.m */,
 				6145C0C015DE7AFB00074537 /* TicketsTableViewCell.h */,
@@ -299,6 +308,7 @@
 				6145C0C215DE7AFB00074537 /* TicketsTableViewCell.m in Sources */,
 				6131977715DE95A000B9C0ED /* OrdersTableViewController.m in Sources */,
 				6131977B15DE968F00B9C0ED /* OrdersTableViewCell.m in Sources */,
+				614DD55B15DFBB7500464577 /* BarScannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

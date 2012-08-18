@@ -10,12 +10,12 @@
 #import "TicketsTableViewController.h"
 #import "Ticket.h"
 #import "OrderStore.h"
+#import "AudioToolbox/AudioServices.h"
 
 @interface ScannerViewController ()
 
 - (NSDictionary *)parseTicketData:(ZBarSymbolSet *)data;
-- (void)addTicketWithSId:(NSString *)sId;
-- (void)dismissScanner:(id)sender;
+- (BOOL)addTicketWithSId:(NSString *)sId;
 - (void)resetTickets;
 
 @end
@@ -30,7 +30,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		readerVC = nil;
+		scanner = [[BarScannerViewController alloc] init];
+		[scanner setReaderDelegate:self];
 		tickets = [[NSMutableArray alloc] init];
 		
 		UIImage *image = [[[UIImage alloc] init] autorelease];
@@ -61,7 +62,7 @@
 
 - (void)dealloc {
 	[scanBtn release];
-	[readerVC release];
+	[scanner release];
 	[numberField release];
 	[ticketCounter release];
 	[tickets release];
@@ -69,33 +70,21 @@
     [super dealloc];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+	if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+		return NO;
+	}
+	
+	return NO;
+}
+
 #pragma mark methods
 
 - (IBAction)showScanner:(id)sender
 {
-	if (!readerVC) {
-		readerVC = [[ZBarReaderViewController alloc] init];
-		[readerVC setReaderDelegate:self];
-	}
-	
-	// only enable code39
-	[[readerVC scanner] setSymbology:0 config:ZBAR_CFG_ENABLE to:0];
-	[[readerVC scanner] setSymbology:ZBAR_CODE39 config:ZBAR_CFG_ENABLE to:1];
-	
-	// interface
-	[readerVC setShowsZBarControls:NO];
-	
-	CGRect cameraFrame = [[readerVC view] frame];
-	UIView *controls = [[[UIView alloc] initWithFrame:cameraFrame] autorelease];
-	
-	UIToolbar *bar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0, cameraFrame.origin.y + cameraFrame.size.height - 44, cameraFrame.size.width, 44)] autorelease];
-	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissScanner:)] autorelease];
-	[bar setItems:[NSArray arrayWithObject:button]];
-	[controls addSubview:bar];
-	
-	[readerVC setCameraOverlayView:controls];
-	
-	[self presentModalViewController:readerVC animated:YES];
+	[scanner updateCounter:0];
+	[self presentModalViewController:scanner animated:YES];
 }
 
 - (IBAction)checkId:(id)sender
@@ -116,22 +105,25 @@
 	[numberField resignFirstResponder];
 }
 
-- (void)addTicketWithSId:(NSString *)sId
+- (BOOL)addTicketWithSId:(NSString *)sId
 {
 	NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
 	[formatter setNumberStyle:NSNumberFormatterDecimalStyle];
 	NSNumber *number = [formatter numberFromString:sId];
 
 	Ticket *ticket = [[OrderStore defaultStore] ticketWithSId:number];
-	if (!ticket) return;
+	if (!ticket) return false;
 	
 	for (Ticket *ticket in tickets) {
-		if ([[ticket sId] compare:number] == NSOrderedSame) return;
+		if ([[ticket sId] compare:number] == NSOrderedSame) return false;
 	}
 	
 	[tickets addObject:ticket];
 	
+	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 	[ticketCounter setText:[NSString stringWithFormat:@"%d Tickets eingelesen.", [tickets count]]];
+	
+	return true;
 }
 
 - (NSDictionary *)parseTicketData:(ZBarSymbolSet *)data
@@ -189,14 +181,16 @@
 - (void)imagePickerController:(UIImagePickerController *)reader didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	ZBarSymbolSet *results = [info objectForKey: ZBarReaderControllerResults];	
-	[self addTicketWithSId:[[self parseTicketData:results] objectForKey:@"ticket"]];
+	if ([self addTicketWithSId:[[self parseTicketData:results] objectForKey:@"ticket"]]) {
+		[scanner updateCounter:[tickets count]];
+	}
 }
 
 #pragma mark overlay actions
 
-- (void)dismissScanner:(id)sender
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-	[readerVC dismissModalViewControllerAnimated:YES];
+	[picker dismissModalViewControllerAnimated:YES];
 }
 
 @end

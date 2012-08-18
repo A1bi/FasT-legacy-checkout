@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZBarReaderViewController.h"
+#import "BarScannerViewController.h"
 
 @interface ScannerViewController : UIViewController <ZBarReaderDelegate>
 {
-	ZBarReaderViewController *readerVC;
+	BarScannerViewController *scanner;
 	NSMutableArray *tickets;
 }
 
