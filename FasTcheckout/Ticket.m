@@ -7,7 +7,6 @@
 //
 
 #import "Ticket.h"
-
 #import "Order.h"
 
 @implementation Ticket
@@ -44,7 +43,7 @@
 {
 	NSError *error = nil;
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://theater-kaisersesch.de/api.php?action=void&ticket=%@", dId]]];
-	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+	[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
 	
 	if (!error) {
 		[voided release];
