@@ -32,10 +32,13 @@
     if (self) {
 		tickets = [[NSMutableArray alloc] init];
 		
-		UITabBarItem *item = [[[UITabBarItem alloc] initWithTitle:@"Scanner" image:nil tag:0] autorelease];
-		[[self navigationController] setTabBarItem:item];
-		[[self navigationItem] setTitle:@"Ticket scannen"];
+		UIImage *image = [[[UIImage alloc] init] autorelease];
+		UITabBarItem *item = [[[UITabBarItem alloc] initWithTitle:@"Einlesen" image:image tag:0] autorelease];
+		[self setTabBarItem:item];
+		
+		[[self navigationItem] setTitle:@"Tickets einlesen"];
     }
+	
     return self;
 }
 
@@ -58,9 +61,9 @@
 - (void)dealloc {
 	[scanBtn release];
 	[readerVC release];
-	
 	[numberField release];
 	[ticketCounter release];
+	
     [super dealloc];
 }
 

@@ -22,8 +22,13 @@
 {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-		[[self navigationItem] setTitle:@"Bestellungen"];
+		[[self navigationItem] setTitle:@"Buchungen"];
+		
+		UIImage *image = [[[UIImage alloc] init] autorelease];
+		UITabBarItem *item = [[[UITabBarItem alloc] initWithTitle:@"Buchungen" image:image tag:0] autorelease];
+		[self setTabBarItem:item];
     }
+	
     return self;
 }
 
