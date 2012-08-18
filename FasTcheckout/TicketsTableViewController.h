@@ -11,6 +11,8 @@
 @interface TicketsTableViewController : UITableViewController
 {
 	NSArray *tickets;
+	NSMutableArray *numbers;
+	int toPay;
 }
 
 - (id)initWithTickets:(NSArray *)t;

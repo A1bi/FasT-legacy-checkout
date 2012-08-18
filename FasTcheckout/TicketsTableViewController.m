@@ -9,6 +9,8 @@
 #import "TicketsTableViewController.h"
 #import "TicketsTableViewCell.h"
 #import "Ticket.h"
+#import "OrderStore.h"
+#import "Order.h"
 
 @interface TicketsTableViewController ()
 
@@ -23,6 +25,29 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
 		tickets = [t retain];
+		
+		numbers = [[NSMutableArray alloc] init];
+		for (NSString *ticketType in [[OrderStore defaultStore] ticketTypes]) {
+			[numbers addObject:[NSNumber numberWithInt:0]];
+		}
+		
+		for (Ticket *ticket in tickets) {
+			NSNumber *currentNumber = [numbers objectAtIndex:[ticket type]];
+			[numbers replaceObjectAtIndex:[ticket type] withObject:[NSNumber numberWithInt:[currentNumber intValue] + 1]];
+			
+			if (![[ticket order] paid]) {
+				int single = 0, type = [ticket type];
+				if (type == 1) {
+					single = 6;
+				} else if (type == 2) {
+					single = 12;
+				} else if (type == 3) {
+					single = 10;
+				}
+			
+				toPay += single;
+			}
+		}
 		
 		UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(voidTickets:)];
 		[[self navigationItem] setTitle:@"Tickets"];
@@ -77,6 +102,27 @@
 	[cell setTicket:[tickets objectAtIndex:[indexPath row]]];
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+	return [NSString stringWithFormat:@"%d € zu zahlen!", toPay];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	NSMutableString *title = [[NSMutableString alloc] init];
+	
+	int i = 0;
+	for (NSString *ticketType in [[OrderStore defaultStore] ticketTypes]) {
+		NSNumber *number = [numbers objectAtIndex:i];
+		if ([number intValue] > 0) {
+			[title appendFormat:@"%@ %@ | ", number, ticketType];
+		}
+		i++;
+	}
+
+	return title;
 }
 
 #pragma mark - Table view delegate
