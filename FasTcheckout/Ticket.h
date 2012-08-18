@@ -13,6 +13,7 @@
 @interface Ticket : NSObject
 {
 	NSNumber *dId, *sId;
+	NSInteger type;
 	BOOL cancelled;
 	NSDate *voided, *date;
 	NSString *cancelReason;
@@ -23,6 +24,7 @@
 @property (nonatomic, readonly) BOOL cancelled;
 @property (nonatomic, readonly) NSDate *date, *voided;
 @property (nonatomic, readonly) Order* order;
+@property (nonatomic, readonly) NSInteger type;
 
 - (id)initWithInfo:(NSDictionary *)info order:(Order *)o;
 

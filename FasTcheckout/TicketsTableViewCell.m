@@ -9,6 +9,7 @@
 #import "TicketsTableViewCell.h"
 #import "Ticket.h"
 #import "Order.h"
+#import "OrderStore.h"
 
 @implementation TicketsTableViewCell
 
@@ -39,25 +40,24 @@
 	Order *order = [ticket order];
 	
 	NSDictionary *address = [order address];
-	[[self textLabel] setText:[NSString stringWithFormat:@"%@ | %@ %@", [ticket sId], [address objectForKey:@"firstname"], [address objectForKey:@"lastname"]]];
+	[[self textLabel] setText:[NSString stringWithFormat:@"%@ | %@ %@", [[[OrderStore defaultStore] ticketTypes] objectAtIndex:[ticket type]], [address objectForKey:@"firstname"], [address objectForKey:@"lastname"]]];
 	
 	NSString *text = @"Ok";
 	if ([[ticket voided] timeIntervalSince1970] > 0) {
 		text = @"Bereits eingelöst!";
 		
-	} else if ([order type] == OrderTypeFree) {
-		text = @"Freikarte";
-	
-	} else if ([ticket cancelled]) {
-		text = @"Storniert";
+	} else if ([order type] != OrderTypeFree) {
+		if ([ticket cancelled]) {
+			text = @"Storniert";
+			
+		} else if (![order paid]) {
+			if ([order payMethod] == OrderPayMethodCashLater) {
+				text = @"Muss an Abendkasse bezahlen!";
+			} else {
+				text = @"Nicht bezahlt!";
+			}
 		
-	} else if (![order paid]) {
-		if ([order payMethod] == OrderPayMethodCashLater) {
-			text = @"Muss an Abendkasse bezahlen!";
-		} else {
-			text = @"Nicht bezahlt!";
 		}
-	
 	}
 	
 	[[self detailTextLabel] setText:text];

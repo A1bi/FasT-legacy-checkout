@@ -13,6 +13,7 @@
 @interface OrderStore : NSObject
 {
 	NSDictionary *orders, *tickets;
+	NSArray *ticketTypes;
 }
 
 + (OrderStore *)defaultStore;
@@ -21,5 +22,6 @@
 - (Ticket *)ticketWithSId:(NSNumber *)sId;
 
 @property (nonatomic, readonly) NSDictionary *orders;
+@property (nonatomic, readonly) NSArray *ticketTypes;
 
 @end

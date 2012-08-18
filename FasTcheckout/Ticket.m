@@ -11,7 +11,7 @@
 
 @implementation Ticket
 
-@synthesize dId, sId, voided, date, cancelled, order;
+@synthesize dId, sId, voided, date, cancelled, order, type;
 
 - (id)initWithInfo:(NSDictionary *)info order:(Order *)o
 {
@@ -22,8 +22,7 @@
 		
 		dId = [[formatter numberFromString:[info objectForKey:@"id"]] retain];
 		sId = [[formatter numberFromString:[info objectForKey:@"sId"]] retain];
-		
-		//date = [[NSDate dateWithTimeIntervalSince1970:[[info objectForKey:@"date"] intValue]] retain];
+		type = [[info objectForKey:@"type"] intValue];
 		voided = [[NSDate dateWithTimeIntervalSince1970:[[info objectForKey:@"voided"] intValue]] retain];
 		
 		order = o;
@@ -46,7 +45,7 @@
 - (void)voidIt
 {
 	NSError *error = nil;
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://theater-kaisersesch.de/api.php?action=void&ticket=%@", dId]]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fast.albisigns/api.php?action=void&ticket=%@", dId]]];
 	[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
 	
 	if (!error) {

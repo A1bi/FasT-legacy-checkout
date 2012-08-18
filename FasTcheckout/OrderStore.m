@@ -14,7 +14,7 @@ static OrderStore *defaultStore = nil;
 
 @implementation OrderStore
 
-@synthesize orders;
+@synthesize orders, ticketTypes;
 
 + (OrderStore *)defaultStore
 {
@@ -40,7 +40,7 @@ static OrderStore *defaultStore = nil;
 	self = [super init];
 	if (self) {
 		NSError *error = nil;
-		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://theater-kaisersesch.de/api.php?action=getOrders&date=1"]];
+		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://fast.albisigns/api.php?action=getOrders&date=1"]];
 		NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
 		if (error) NSLog(@"%@", error);
 		
@@ -60,6 +60,8 @@ static OrderStore *defaultStore = nil;
 		
 		orders = [[tmpOrders copy] retain];
 		tickets = [[tmpTickets copy] retain];
+		
+		ticketTypes = [[NSArray alloc] initWithObjects:@"Freikarte", @"Ermäßigt", @"Erwachsene", @"Erwachsene (Gruppe)", nil];
 	}
 	
 	return self;
@@ -69,6 +71,7 @@ static OrderStore *defaultStore = nil;
 {
 	[orders release];
 	[tickets release];
+	[ticketTypes release];
 	
 	[super dealloc];
 }
