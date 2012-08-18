@@ -16,7 +16,8 @@ typedef enum { None, Charge, Transfer, CashUpFront, CashLater } OrderPayMethod;
 	NSNumber *dId, *sId, *total;
 	OrderType type;
 	OrderPayMethod payMethod;
-	NSDictionary *address, *cancelled, *tickets;
+	NSDictionary *address, *cancelled;
+	NSArray *tickets;
 	BOOL paid;
 	NSString *notes;
 }
@@ -24,7 +25,8 @@ typedef enum { None, Charge, Transfer, CashUpFront, CashLater } OrderPayMethod;
 @property (nonatomic, readonly) NSNumber *dId, *sId, *total;
 @property (nonatomic, readonly) OrderType type;
 @property (nonatomic, readonly) OrderPayMethod payMethod;
-@property (nonatomic, readonly) NSDictionary *address, *cancelled, *tickets;
+@property (nonatomic, readonly) NSDictionary *address, *cancelled;
+@property (nonatomic, readonly) NSArray *tickets;
 @property (nonatomic, readonly) BOOL paid;
 @property (nonatomic, readonly) NSString *notes;
 

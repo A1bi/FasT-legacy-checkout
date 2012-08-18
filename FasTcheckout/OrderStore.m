@@ -52,7 +52,10 @@ static OrderStore *defaultStore = nil;
 		for (NSDictionary *orderInfo in [result objectForKey:@"orders"]) {
 			Order* order = [[[Order alloc] initWithInfo:orderInfo] autorelease];
 			[tmpOrders setObject:order forKey:[order sId]];
-			[tmpTickets addEntriesFromDictionary:[order tickets]];
+			
+			for (Ticket *ticket in [order tickets]) {
+				[tmpTickets setObject:ticket forKey:[ticket sId]];
+			}
 		}
 		
 		orders = [[tmpOrders copy] retain];

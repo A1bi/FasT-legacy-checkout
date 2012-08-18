@@ -72,7 +72,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *tickets = [[[(OrdersTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] order] tickets] allValues];
+    NSArray *tickets = [[(OrdersTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] order] tickets];
 	
 	TicketsTableViewController *tvc = [[[TicketsTableViewController alloc] initWithTickets:tickets] autorelease];
 	[[self navigationController] pushViewController:tvc animated:YES];
