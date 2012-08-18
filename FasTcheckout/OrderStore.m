@@ -62,6 +62,14 @@ static OrderStore *defaultStore = nil;
 	return self;
 }
 
+- (void)dealloc
+{
+	[orders release];
+	[tickets release];
+	
+	[super dealloc];
+}
+
 - (id)retain
 {
 	return self;

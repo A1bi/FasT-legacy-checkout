@@ -34,7 +34,11 @@
 
 - (void)dealloc
 {
+	[dId release];
+	[sId release];
+	[voided release];
 	[date release];
+	[cancelReason release];
 	
 	[super dealloc];
 }

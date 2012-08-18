@@ -19,10 +19,16 @@
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuse];
     if (self) {
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-		
     }
 	
     return self;
+}
+
+- (void)dealloc
+{
+	[ticket release];
+	
+	[super dealloc];
 }
 
 - (void)setTicket:(Ticket *)t

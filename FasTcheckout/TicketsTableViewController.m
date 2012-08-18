@@ -42,6 +42,13 @@
     [super viewDidUnload];
 }
 
+- (void)dealloc
+{
+	[tickets release];
+	
+	[super dealloc];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -61,10 +68,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *reuse = @"TicketCell";
+	static NSString *reuse = @"TicketCell";
     TicketsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuse];
 	if (!cell) {
-		cell = [[TicketsTableViewCell alloc] initWithReuseIdentifier:reuse];
+		cell = [[[TicketsTableViewCell alloc] initWithReuseIdentifier:reuse] autorelease];
 	}
 	
 	[cell setTicket:[tickets objectAtIndex:[indexPath row]]];

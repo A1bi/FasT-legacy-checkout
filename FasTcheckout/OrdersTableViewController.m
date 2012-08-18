@@ -56,10 +56,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *reuse = @"TicketCell";
+	static NSString *reuse = @"TicketCell";
 	OrdersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuse];
 	if (!cell) {
-		cell = [[OrdersTableViewCell alloc] initWithReuseIdentifier:reuse];
+		cell = [[[OrdersTableViewCell alloc] initWithReuseIdentifier:reuse] autorelease];
 	}
 	
 	NSArray *orders = [[[OrderStore defaultStore] orders] allValues];
@@ -72,10 +72,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *orders = [[[OrderStore defaultStore] orders] allValues];
-	Order *order = [orders objectAtIndex:[indexPath row]];
+    NSArray *tickets = [[[(OrdersTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] order] tickets] allValues];
 	
-	TicketsTableViewController *tvc = [[TicketsTableViewController alloc] initWithTickets:[[order tickets] allValues]];
+	TicketsTableViewController *tvc = [[[TicketsTableViewController alloc] initWithTickets:tickets] autorelease];
 	[[self navigationController] pushViewController:tvc animated:YES];
 }
 

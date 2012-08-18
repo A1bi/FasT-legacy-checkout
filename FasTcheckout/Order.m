@@ -44,4 +44,17 @@
 	return self;
 }
 
+- (void)dealloc
+{
+	[dId release];
+	[sId release];
+	[total release];
+	[address release];
+	[cancelled release];
+	[tickets release];
+	[notes release];
+	
+	[super dealloc];
+}
+
 @end

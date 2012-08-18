@@ -27,18 +27,18 @@
 	
 	[[OrderStore defaultStore] init];
 	
-	ScannerViewController *svc = [[[ScannerViewController alloc] init] autorelease];
-	UINavigationController *nvc = [[[UINavigationController alloc] initWithRootViewController:svc] autorelease];
+	ScannerViewController *scanner = [[[ScannerViewController alloc] init] autorelease];
+	UINavigationController *scannerNav = [[[UINavigationController alloc] initWithRootViewController:scanner] autorelease];
 	
-	OrdersTableViewController *ovc = [[OrdersTableViewController alloc] init];
-	UINavigationController *nvc2 = [[[UINavigationController alloc] initWithRootViewController:ovc] autorelease];
+	OrdersTableViewController *orders = [[[OrdersTableViewController alloc] init] autorelease];
+	UINavigationController *ordersNav = [[[UINavigationController alloc] initWithRootViewController:orders] autorelease];
 	
 	UITabBarController *tbc = [[[UITabBarController alloc] init] autorelease];
-	[tbc addChildViewController:nvc];
-	[tbc addChildViewController:nvc2];
+	[tbc setViewControllers:[NSArray arrayWithObjects:scannerNav, ordersNav, nil]];
 	[[self window] setRootViewController:tbc];
 	
     [self.window makeKeyAndVisible];
+	
 	return YES;
 }
 

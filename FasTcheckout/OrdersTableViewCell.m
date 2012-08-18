@@ -19,7 +19,6 @@
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuse];
     if (self) {
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-		
     }
 	
     return self;
@@ -33,6 +32,13 @@
 	NSDictionary *address = [order address];
 	[[self textLabel] setText:[NSString stringWithFormat:@"%@ %@ (%@)", [address objectForKey:@"firstname"], [address objectForKey:@"lastname"], [address objectForKey:@"affiliation"]]];
 	[[self detailTextLabel] setText:[NSString stringWithFormat:@"%u Tickets", [[order tickets] count]]];
+}
+
+- (void)dealloc
+{
+	[order release];
+	
+	[super dealloc];
 }
 
 @end

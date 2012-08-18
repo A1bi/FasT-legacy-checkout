@@ -30,6 +30,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+		readerVC = nil;
 		tickets = [[NSMutableArray alloc] init];
 		
 		UIImage *image = [[[UIImage alloc] init] autorelease];
@@ -52,9 +53,9 @@
 - (void)viewDidUnload
 {
 	[self setScanBtn:nil];
-	
 	[self setNumberField:nil];
 	[self setTicketCounter:nil];
+	
     [super viewDidUnload];
 }
 
@@ -63,6 +64,7 @@
 	[readerVC release];
 	[numberField release];
 	[ticketCounter release];
+	[tickets release];
 	
     [super dealloc];
 }
@@ -71,8 +73,10 @@
 
 - (IBAction)showScanner:(id)sender
 {
-	readerVC = [[ZBarReaderViewController alloc] init];
-	[readerVC setReaderDelegate:self];
+	if (!readerVC) {
+		readerVC = [[ZBarReaderViewController alloc] init];
+		[readerVC setReaderDelegate:self];
+	}
 	
 	// only enable code39
 	[[readerVC scanner] setSymbology:0 config:ZBAR_CFG_ENABLE to:0];
@@ -101,7 +105,7 @@
 }
 
 - (IBAction)showTickets:(id)sender {
-	TicketsTableViewController *tvc = [[TicketsTableViewController alloc] initWithTickets:tickets];
+	TicketsTableViewController *tvc = [[[TicketsTableViewController alloc] initWithTickets:tickets] autorelease];
 	
 	[numberField resignFirstResponder];
 	[[self navigationController] pushViewController:tvc animated:YES];
