@@ -27,6 +27,8 @@
 		UIImage *image = [[[UIImage alloc] init] autorelease];
 		UITabBarItem *item = [[[UITabBarItem alloc] initWithTitle:@"Buchungen" image:image tag:0] autorelease];
 		[self setTabBarItem:item];
+		
+		sortedOrders = [[[[OrderStore defaultStore] orders] keysSortedByValueUsingSelector:@selector(compareByName:)] retain];
     }
 	
     return self;
@@ -62,8 +64,8 @@
 		cell = [[[OrdersTableViewCell alloc] initWithReuseIdentifier:reuse] autorelease];
 	}
 	
-	NSArray *orders = [[[OrderStore defaultStore] orders] allValues];
-	[cell setOrder:[orders objectAtIndex:[indexPath row]]];
+	Order *order = [[OrderStore defaultStore] orderWithSId:[sortedOrders objectAtIndex:[indexPath row]]];
+	[cell setOrder:order];
     
     return cell;
 }

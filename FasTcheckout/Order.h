@@ -43,4 +43,6 @@ typedef NS_ENUM(NSUInteger, OrderPayMethod) {
 
 - (id)initWithInfo:(NSDictionary *)info;
 
+- (NSComparisonResult)compareByName:(Order *)order;
+
 @end

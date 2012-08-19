@@ -57,4 +57,20 @@
 	[super dealloc];
 }
 
+- (NSComparisonResult)compareByName:(Order *)order
+{
+	NSDictionary *oAddress = [order address];
+	NSComparisonResult result;
+	
+	NSArray *keys = [NSArray arrayWithObjects:@"lastname", @"firstname", nil];
+	for (NSString *key in keys) {
+		result = [[address objectForKey:key] compare:[oAddress objectForKey:key] options:NSCaseInsensitiveSearch];
+		if (result != NSOrderedSame) {
+			return result;
+		}
+	}
+	
+	return NSOrderedSame;
+}
+
 @end

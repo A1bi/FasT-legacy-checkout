@@ -30,7 +30,25 @@
 	order = [o retain];
 	
 	NSDictionary *address = [order address];
-	[[self textLabel] setText:[NSString stringWithFormat:@"%@ %@ (%@)", [address objectForKey:@"firstname"], [address objectForKey:@"lastname"], [address objectForKey:@"affiliation"]]];
+	NSMutableString *name = [NSMutableString string];
+	
+	NSArray *keys = [NSArray arrayWithObjects:@"firstname", @"lastname", @"affiliation", nil];
+	int i = 0;
+	for (NSString *key in keys) {
+		NSString *value = [address objectForKey:key];
+		if ([value length]) {
+			NSString *format = @"%@ ";
+			if (i == 2) {
+				format = @"(%@)";
+			}
+			
+			[name appendFormat:format, value];
+		}
+		
+		i++;
+	}
+	
+	[[self textLabel] setText:name];
 	[[self detailTextLabel] setText:[NSString stringWithFormat:@"%u Tickets", [[order tickets] count]]];
 }
 
