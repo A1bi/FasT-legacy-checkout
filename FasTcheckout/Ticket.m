@@ -8,6 +8,7 @@
 
 #import "Ticket.h"
 #import "Order.h"
+#import "APIManager.h"
 
 @implementation Ticket
 
@@ -44,14 +45,10 @@
 
 - (void)voidIt
 {
-	NSError *error = nil;
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/api.php?action=void&ticket=%@", FAST_API_URL, dId]]];
-	[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+	[voided release];
+	voided = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
 	
-	if (!error) {
-		[voided release];
-		voided = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
-	}
+	[[APIManager defaultManager] voidTicket:self];
 }
 
 - (BOOL)isValid

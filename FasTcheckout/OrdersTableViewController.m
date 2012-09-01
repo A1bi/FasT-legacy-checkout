@@ -27,8 +27,6 @@
 		UIImage *image = [[[UIImage alloc] init] autorelease];
 		UITabBarItem *item = [[[UITabBarItem alloc] initWithTitle:@"Buchungen" image:image tag:0] autorelease];
 		[self setTabBarItem:item];
-		
-		sortedOrders = [[[[OrderStore defaultStore] orders] keysSortedByValueUsingSelector:@selector(compareByName:)] retain];
     }
 	
     return self;
@@ -37,6 +35,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	if (!sortedOrders) {
+		sortedOrders = [[[[OrderStore defaultStore] orders] keysSortedByValueUsingSelector:@selector(compareByName:)] retain];
+	}
 }
 
 - (void)didReceiveMemoryWarning
